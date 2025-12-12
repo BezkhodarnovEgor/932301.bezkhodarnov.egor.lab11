@@ -1,0 +1,66 @@
+﻿@model MathOperationsApp.Models.CalculationViewModel
+@{
+    ViewData["Title"] = "Операции с числами";
+}
+
+<div class="container mt-5">
+    <h1>@ViewBag.Message</h1>
+    <p class="text-muted">Сгенерировано в: @ViewBag.GeneratedAt</p>
+
+    <div class="card mt-4">
+        <div class="card-header bg-primary text-white">
+            <h3>Исходные числа</h3>
+        </div>
+        <div class="card-body">
+            <p><strong>Число 1:</strong> @Model.Number1</p>
+            <p><strong>Число 2:</strong> @Model.Number2</p>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-header bg-success text-white">
+            <h3>Результаты операций</h3>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Операция</th>
+                        <th>Результат</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Сложение (@Model.Number1 + @Model.Number2)</td>
+                        <td>@Model.Addition</td>
+                    </tr>
+                    <tr>
+                        <td>Вычитание (@Model.Number1 - @Model.Number2)</td>
+                        <td>@Model.Subtraction</td>
+                    </tr>
+                    <tr>
+                        <td>Умножение (@Model.Number1 × @Model.Number2)</td>
+                        <td>@Model.Multiplication</td>
+                    </tr>
+                    <tr>
+                        <td>Деление (@Model.Number1 ÷ @Model.Number2)</td>
+                        <td>
+                            @if (Model.Division.HasValue)
+                            {
+                                @Math.Round(Model.Division.Value, 2)
+                            }
+                            else
+                            {
+                                <span class="text-danger">Ошибка: деление на ноль!</span>
+                            }
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <a asp-action="Index" class="btn btn-primary">Сгенерировать новые числа</a>
+    </div>
+</div>
