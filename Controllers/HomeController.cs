@@ -26,8 +26,6 @@ public class HomeController : Controller
             Multiplication = _mathService.Multiply(num1, num2),
             Division = _mathService.Divide(num1, num2)
         };
-
-        ViewBag.GeneratedAt = DateTime.Now.ToString("HH:mm:ss");
         ViewBag.Message = "Результаты операций с двумя случайными числами";
 
         return View(viewModel);
